@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import "./styles.css";
-import MusicPlayer from "../components/MusicPlayer";
-import { COLORS } from "../colors/colors";
+import MusicPlayer from "../../components/MusicPlayer";
+import { COLORS } from "../../colors/colors";
 import { useState } from "react";
+import { styles } from "./styles";
+import SongCard from "../../components/SongCard/SongCard";
+import SearchBar from "../../components/SearchBar";
+import TopBar from "./TopBar/TopBar";
 
 function HomePage() {
   const [playerKey, setPlayerKey] = useState(0);
   const [music, setMusic] = useState(null);
   function onHandleClick(music) {
-    console.log(music);
     setMusic(music);
     setPlayerKey((key) => key + 1);
   }
@@ -49,36 +52,13 @@ function HomePage() {
   ];
   return (
     <div>
-      <div style={{ position: "sticky", top: 0 }}>
-        <div>PAGINA PRINCIPAL</div>
-      </div>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+      <TopBar />
+      <div style={styles.cardContainer}>
         {songs.map((song) => (
-          <div
-            key={song.id}
-            style={{
-              height: 200,
-              aspectRatio: 1,
-              backgroundColor: COLORS.accentColor,
-              margin: 10,
-            }}
-            onClick={() => onHandleClick(song)}
-          >
-            <img
-              src={song.cover}
-              style={{ height: "100%", aspectRatio: 1, paddingLeft: 5 }}
-            />
-          </div>
+          <SongCard song={song} onClick={() => onHandleClick(song)} />
         ))}
       </div>
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          width: "100%",
-          left: 0,
-        }}
-      >
+      <div style={styles.musicPlayerContainer}>
         <MusicPlayer song={music} key={playerKey} />
       </div>
     </div>
