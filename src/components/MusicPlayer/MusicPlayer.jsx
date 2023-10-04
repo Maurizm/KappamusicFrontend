@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import H5AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./styles.css";
-import { COLORS } from "../colors/colors";
+import { COLORS } from "../../colors/colors";
 import { useEffect } from "react";
 
 function MusicPlayer({ song }) {
-  useEffect(() => {
-    console.log(song);
-  }, [song]);
   return (
     <div
       style={{

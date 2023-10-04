@@ -48,7 +48,7 @@ function HomePage() {
     },
   ];
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div>
       <div style={{ position: "sticky", top: 0 }}>
         <div>PAGINA PRINCIPAL</div>
       </div>
