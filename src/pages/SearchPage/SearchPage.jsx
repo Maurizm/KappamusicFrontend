@@ -3,10 +3,20 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import songs from "./../../assets/songs.json";
 import { COLORS } from "../../colors/colors";
+import ListSongCard from "../../components/ListSongCard/ListSongCard";
+import MusicPlayer from "../../components/MusicPlayer";
 
 function SearchPage() {
+  const [currentSong, setCurrentSong] = useState(null);
+  const [playerKey, setPlayerKey] = useState(0);
+
   const { searchTerm } = useParams();
   const [filteredArray, setFilteredArray] = useState([]);
+
+  const handleClick = (song) => {
+    setCurrentSong(song);
+    setPlayerKey((key) => key + 1);
+  };
 
   const handleSearch = () => {
     if (searchTerm.length > 0) {
@@ -18,38 +28,44 @@ function SearchPage() {
       });
       setFilteredArray(filteredSearch);
     } else {
-      console.log("Searchbox vacio");
+      setFilteredArray([]);
     }
   };
 
   useEffect(() => {
     handleSearch();
-  }, []);
+  }, [searchTerm]);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: 30,
+      }}
+    >
       <div>
-        {filteredArray.length == 0 ? (
-          <div>No se encontraron resultados.</div>
+        {filteredArray.length == 0 || searchTerm === "emptyString" ? (
+          <div>
+            No se encontraron resultados o los términos de búsqueda son
+            inválidos.
+          </div>
         ) : (
           filteredArray.map((song) => {
             return (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: 300,
-                  height: 50,
-                  padding: 10,
-                  backgroundColor: COLORS.highlightBackgroundColor,
-                }}
-              >
-                <div>{song.artist}</div>
-                <div>{song.title}</div>
-              </div>
+              <ListSongCard song={song} onClick={() => handleClick(song)} />
             );
           })
         )}
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          width: "100%",
+        }}
+      >
+        <MusicPlayer song={currentSong} key={playerKey} />
       </div>
     </div>
   );

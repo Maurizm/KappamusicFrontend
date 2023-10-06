@@ -31,7 +31,9 @@ function SearchBar() {
         onChange={handleChange}
       />
 
-      <Link to={`/search/${searchInput}`}>
+      <Link
+        to={`/search/${searchInput.length > 0 ? searchInput : "emptyString"}`}
+      >
         <LuSearch style={styles.searchIcon} />
       </Link>
     </div>

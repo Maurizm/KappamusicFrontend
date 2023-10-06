@@ -17,7 +17,6 @@ function HomePage() {
 
   return (
     <div>
-      <TopBar />
       <div style={styles.cardContainer}>
         {songs.map((song) => (
           <SongCard song={song} onClick={() => onHandleClick(song)} />
