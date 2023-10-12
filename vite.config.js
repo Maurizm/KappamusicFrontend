@@ -4,5 +4,5 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  //base: "https://wimoca.github.io/aKappa-proyecto",
+  base: "https://maurizm.github.io/KappamusicFrontend/",
 });

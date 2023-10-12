@@ -19,7 +19,11 @@ function HomePage() {
     <div>
       <div style={styles.cardContainer}>
         {songs.map((song) => (
-          <SongCard song={song} onClick={() => onHandleClick(song)} />
+          <SongCard
+            song={song}
+            onClick={() => onHandleClick(song)}
+            key={song.id}
+          />
         ))}
       </div>
       <div style={styles.musicPlayerContainer}>
