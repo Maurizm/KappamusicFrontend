@@ -1,16 +1,20 @@
 import React from "react";
 import { COLORS } from "../../colors/colors";
+import { useNavigate } from "react-router-dom";
 
 function SideBar() {
+  const navigate = useNavigate();
   return (
     <div
       style={{
+        position: "sticky",
+        top: 0,
         height: "100vh",
         width: "20%",
         backgroundColor: COLORS.highlightBackgroundColor,
       }}
     >
-      <div>HOME</div>
+      <div onClick={() => navigate("/")}>HOME</div>
     </div>
   );
 }

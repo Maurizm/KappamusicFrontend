@@ -39,31 +39,30 @@ function SearchPage() {
   }, [searchTerm]);
 
   return (
-    <div>
-      <div style={styles.container}>
-        <div>
-          {filteredArray.length == 0 || searchTerm === "emptyString" ? (
-            <div>
-              No se encontraron resultados o los términos de búsqueda son
-              inválidos.
-            </div>
-          ) : (
-            filteredArray.map((song) => {
-              return (
-                <ListSongCard song={song} onClick={() => handleClick(song)} />
-              );
-            })
-          )}
-        </div>
-        <div
-          style={{
-            position: "fixed",
-            bottom: 0,
-            width: "100%",
-          }}
-        >
-          <MusicPlayer song={currentSong} key={playerKey} />
-        </div>
+    <div style={styles.container}>
+      <div>
+        {filteredArray.length == 0 || searchTerm === "emptyString" ? (
+          <div>
+            No se encontraron resultados o los términos de búsqueda son
+            inválidos.
+          </div>
+        ) : (
+          filteredArray.map((song) => {
+            return (
+              <ListSongCard song={song} onClick={() => handleClick(song)} />
+            );
+          })
+        )}
+      </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+        }}
+      >
+        <MusicPlayer song={currentSong} key={playerKey} />
       </div>
     </div>
   );
