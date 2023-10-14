@@ -15,10 +15,17 @@ export const styles = {
     width: "10%",
     maxWidth: "10%",
   },
-  songName: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
+  songInfo: {
+    //overflow: "hidden",
+    //textOverflow: "ellipsis",
     whiteSpace: "nowrap",
-    width: "175px",
+    //width: "175px",
+  },
+  albumInfo: {
+    fontSize: 14,
+    whiteSpace: "nowrap",
+  },
+  artistInfo: {
+    whiteSpace: "nowrap",
   },
 };

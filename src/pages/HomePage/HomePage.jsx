@@ -4,8 +4,9 @@ import MusicPlayer from "../../components/MusicPlayer";
 import { useState } from "react";
 import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
-import TopBar from "./TopBar/TopBar";
+import TopBar from "../../components/TopBar/TopBar";
 import songs from "../../assets/songs.json";
+import SideBar from "../../components/SideBar";
 
 function HomePage() {
   const [playerKey, setPlayerKey] = useState(0);
@@ -14,7 +15,6 @@ function HomePage() {
     setMusic(music);
     setPlayerKey((key) => key + 1);
   }
-
   return (
     <div>
       <div style={styles.cardContainer}>

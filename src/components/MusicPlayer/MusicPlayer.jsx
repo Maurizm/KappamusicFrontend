@@ -3,6 +3,7 @@ import H5AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./styles.css";
 import { styles } from "./styles";
+import { COLORS } from "../../colors/colors";
 
 function MusicPlayer({ song }) {
   return (
@@ -18,8 +19,22 @@ function MusicPlayer({ song }) {
         />
       </div>
       <div style={styles.songInformationContainer}>
-        <div>{song ? song.artist : ""}</div>
-        <div style={styles.songName}>{song ? song.title : ""}</div>
+        <div style={styles.artistInfo}>{song ? song.artist : ""}</div>
+        {song && song.title.length > 15 ? (
+          <marquee style={styles.songInfo} scrollamount="4">
+            {song ? song.title : ""}
+          </marquee>
+        ) : (
+          <div style={styles.songInfo}>{song ? song.title : ""}</div>
+        )}
+
+        {song && song.album.length > 18 ? (
+          <marquee style={styles.albumInfo} scrollamount="4">
+            {song ? song.album : ""}
+          </marquee>
+        ) : (
+          <div style={styles.albumInfo}>{song ? song.album : ""}</div>
+        )}
       </div>
       <H5AudioPlayer
         src={song ? song.link : ""}

@@ -1,7 +1,7 @@
 import React from "react";
-import SearchBar from "../../../components/SearchBar";
+import SearchBar from "../SearchBar";
 import { BsPersonCircle } from "react-icons/bs";
-import { COLORS } from "../../../colors/colors";
+import { COLORS } from "../../colors/colors";
 function TopBar() {
   return (
     <div
