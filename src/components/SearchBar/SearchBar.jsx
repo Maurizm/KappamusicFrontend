@@ -25,7 +25,7 @@ function SearchBar() {
     <div style={styles.container}>
       <input
         type="text"
-        placeholder="Buscar..."
+        placeholder="Buscar canción"
         style={styles.searchField}
         maxLength={100}
         onChange={handleChange}
