@@ -7,8 +7,9 @@ import SideBar from "./components/SideBar";
 
 function App() {
   return (
-    <div>
-      <div>
+    <div style={{ display: "flex" }}>
+      <SideBar />
+      <div style={{ paddingLeft: 50, width: "100%", paddingRight: 20 }}>
         <TopBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
