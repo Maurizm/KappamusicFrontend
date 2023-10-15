@@ -14,7 +14,7 @@ function SideBar() {
         backgroundColor: COLORS.highlightBackgroundColor,
       }}
     >
-      <div onClick={() => navigate("/")}>HOME</div>
+      <div onClick={() => navigate("/")}>Inicio</div>
     </div>
   );
 }
