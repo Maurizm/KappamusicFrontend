@@ -2,23 +2,12 @@ import React from "react";
 import SearchBar from "../SearchBar";
 import { BsPersonCircle } from "react-icons/bs";
 import { COLORS } from "../../colors/colors";
+import { styles } from "./styles";
 function TopBar() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-      }}
-    >
+    <div style={styles.container}>
       <SearchBar />
-      <BsPersonCircle
-        style={{
-          color: COLORS.accentColor,
-          fontSize: 35,
-          padding: 10,
-        }}
-      />
+      <BsPersonCircle style={styles.icon} />
     </div>
   );
 }
