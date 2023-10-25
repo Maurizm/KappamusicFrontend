@@ -32,8 +32,8 @@ function ListSongCard({ song, onClick }) {
         <div style={{ display: "flex", alignItems: "center" }}>
           <img src={song.cover} style={styles.image} onClick={onClick} />
           <div style={{ paddingLeft: 10 }}>
-            <Typography>{song.title}</Typography>
-            <Typography>{song.artist}</Typography>
+            <Typography color={COLORS.textColor}>{song.title}</Typography>
+            <Typography color={COLORS.textColor}>{song.artist}</Typography>
             <Typography style={styles.albumInfo}>{song.album}</Typography>
           </div>
         </div>

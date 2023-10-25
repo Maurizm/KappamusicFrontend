@@ -21,6 +21,7 @@ export const styles = {
     marginLeft: 3,
     paddingLeft: 20,
     fontSize: 18,
+    color: COLORS.textColor,
   },
   searchIcon: {
     width: 25,

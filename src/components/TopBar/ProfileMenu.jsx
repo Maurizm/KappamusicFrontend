@@ -87,7 +87,7 @@ export default function ProfileMenu() {
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <BiLogOut />
+            <BiLogOut color={COLORS.accentColor} size={22} />
           </ListItemIcon>
           Cerrar Sesión
         </MenuItem>
