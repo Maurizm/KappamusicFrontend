@@ -1,7 +1,7 @@
 export const styles = {
   container: {
-    display: "flex",
-    justifyContent: "center",
+    // display: "flex",
+    // justifyContent: "center",
     paddingTop: 30,
   },
 };

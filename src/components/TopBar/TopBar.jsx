@@ -1,13 +1,13 @@
 import React from "react";
 import SearchBar from "../SearchBar";
-import { BsPersonCircle } from "react-icons/bs";
-import { COLORS } from "../../colors/colors";
 import { styles } from "./styles";
+import ProfileMenu from "./ProfileMenu";
+
 function TopBar() {
   return (
     <div style={styles.container}>
       <SearchBar />
-      <BsPersonCircle style={styles.icon} />
+      <ProfileMenu />
     </div>
   );
 }
