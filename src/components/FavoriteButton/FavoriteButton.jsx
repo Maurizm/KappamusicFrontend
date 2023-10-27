@@ -13,13 +13,23 @@ function FavoriteButton({ song }) {
   const onHandleClickAdd = async (song) => {
     await updateFavorites(song)
       .then(() => getUserData(setUserData))
-      .then(() => setData(userData));
+      .then(
+        setData((prevValue) => {
+          const newData = userData;
+          return [...prevValue, newData];
+        })
+      );
     console.log("add");
   };
   const onHandleClickRemove = async (song) => {
     await removeFavorites(song)
       .then(() => getUserData(setUserData))
-      .then(() => setData(userData));
+      .then(
+        setData((prevValue) => {
+          const newData = userData;
+          return [...prevValue, newData];
+        })
+      );
     console.log("remove");
   };
 
