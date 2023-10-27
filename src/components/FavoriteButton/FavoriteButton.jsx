@@ -8,14 +8,18 @@ import { getUserData } from "../../firebase/hooks/getUserData";
 
 function FavoriteButton({ song }) {
   const { userData, setUserData } = useContext(playerContext);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(userData);
 
   const onHandleClickAdd = async (song) => {
-    await updateFavorites(song).then(() => getUserData(setUserData));
+    await updateFavorites(song)
+      .then(() => getUserData(setUserData))
+      .then(() => setData(userData));
     console.log("add");
   };
   const onHandleClickRemove = async (song) => {
-    await removeFavorites(song).then(() => getUserData(setUserData));
+    await removeFavorites(song)
+      .then(() => getUserData(setUserData))
+      .then(() => setData(userData));
     console.log("remove");
   };
 
@@ -23,10 +27,10 @@ function FavoriteButton({ song }) {
     setData(userData);
   }, [userData]);
 
-  if (userData.length == 0) {
+  if (data.length == 0) {
     return null;
   }
-  if (userData[0]["favorites"].some((item) => item.id === song.id)) {
+  if (data[0]["favorites"].some((item) => item.id === song.id)) {
     return (
       <BsStarFill
         color={COLORS.accentColor}
