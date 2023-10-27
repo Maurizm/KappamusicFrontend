@@ -10,6 +10,6 @@ export const getUserData = async (setData) => {
       //id: doc.id,
     }));
     console.log(newData);
-    setData(newData);
+    setData([...newData]);
   });
 };
