@@ -33,14 +33,14 @@ function FavoriteButton({ song }) {
     console.log("remove");
   };
 
-  useEffect(() => {
-    setData(userData);
-  }, [userData]);
+  // useEffect(() => {
+  //   setData(userData);
+  // }, [userData]);
 
-  if (data.length == 0) {
+  if (userData.length == 0) {
     return null;
   }
-  if (data[0]["favorites"].some((item) => item.id === song.id)) {
+  if (userData[0]["favorites"].some((item) => item.id === song.id)) {
     return (
       <BsStarFill
         color={COLORS.accentColor}
