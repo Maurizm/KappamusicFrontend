@@ -11,12 +11,10 @@ function FavoriteButton({ song }) {
   const [data, setData] = useState([]);
 
   const onHandleClickAdd = async (song) => {
-    await updateFavorites(song);
-    await getUserData(setUserData);
+    await updateFavorites(song).then(() => getUserData(setUserData));
   };
   const onHandleClickRemove = async (song) => {
-    await removeFavorites(song);
-    await getUserData(setUserData);
+    await removeFavorites(song).then(() => getUserData(setUserData));
   };
 
   useEffect(() => {
