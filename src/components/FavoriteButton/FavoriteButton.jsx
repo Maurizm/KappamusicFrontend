@@ -11,30 +11,28 @@ function FavoriteButton({ song }) {
   const [data, setData] = useState(userData);
   const [track, setTrack] = useState("");
 
-  const onHandleClickAdd = async (song) => {
-    await updateFavorites(song)
-      .then(() => getUserData(setUserData))
-      .then(() =>
-        setTimeout(() => {
-          setTrack("done");
-        }, 5000)
-      );
-    console.log("add");
+  const onHandleClick = async (song, action) => {
+    if (action == "add") {
+      await updateFavorites(song).then(() => getUserData(setUserData));
+      console.log("add");
+    } else {
+      await removeFavorites(song).then(() => getUserData(setUserData));
+      console.log("remove");
+    }
   };
-  const onHandleClickRemove = async (song) => {
-    await removeFavorites(song)
-      .then(() => getUserData(setUserData))
-      .then(() =>
-        setTimeout(() => {
-          setTrack("done");
-        }, 500)
-      );
-    console.log("remove");
-  };
+
+  // const onHandleClickAdd = async (song) => {
+  //   await updateFavorites(song).then(() => getUserData(setUserData));
+  //   console.log("add");
+  // };
+  // const onHandleClickRemove = async (song) => {
+  //   await removeFavorites(song).then(() => getUserData(setUserData));
+  //   console.log("remove");
+  // };
 
   useEffect(() => {
     setData([...userData]);
-  }, [track, userData]);
+  }, [userData]);
 
   if (data.length == 0) {
     return null;
@@ -44,7 +42,7 @@ function FavoriteButton({ song }) {
       <BsStarFill
         color={COLORS.accentColor}
         size={22}
-        onClick={() => onHandleClickRemove(song)}
+        onClick={() => onHandleClick(song, "remove")}
       />
     );
   } else {
@@ -52,7 +50,7 @@ function FavoriteButton({ song }) {
       <BsStar
         color={COLORS.accentColor}
         size={22}
-        onClick={() => onHandleClickAdd(song)}
+        onClick={() => onHandleClick(song, "add")}
       />
     );
   }
