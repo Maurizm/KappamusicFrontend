@@ -15,8 +15,7 @@ function PlayerState(props) {
 
   useEffect(() => {
     const getMusicLibrary = async () => {
-      await getData(setSongsList);
-      await getUserData(setUserData);
+      await getData(setSongsList).then(() => getUserData(setUserData));
     };
     getMusicLibrary();
   }, []);
@@ -35,7 +34,6 @@ function PlayerState(props) {
         songsList: state.songsList,
         userData: state.userData,
         setUserData,
-
         setCurrentSong,
         setSongsList,
       }}
