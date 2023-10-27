@@ -11,36 +11,22 @@ function FavoriteButton({ song }) {
   const [data, setData] = useState(userData);
 
   const onHandleClickAdd = async (song) => {
-    await updateFavorites(song)
-      .then(() => getUserData(setUserData))
-      .then(
-        setData((prevValue) => {
-          const newData = userData;
-          return [...prevValue, newData];
-        })
-      );
+    await updateFavorites(song).then(() => getUserData(setUserData));
     console.log("add");
   };
   const onHandleClickRemove = async (song) => {
-    await removeFavorites(song)
-      .then(() => getUserData(setUserData))
-      .then(
-        setData((prevValue) => {
-          const newData = userData;
-          return [...prevValue, newData];
-        })
-      );
+    await removeFavorites(song).then(() => getUserData(setUserData));
     console.log("remove");
   };
 
-  // useEffect(() => {
-  //   setData(userData);
-  // }, [userData]);
+  useEffect(() => {
+    setData([...userData]);
+  }, [userData]);
 
-  if (userData.length == 0) {
+  if (data.length == 0) {
     return null;
   }
-  if (userData[0]["favorites"].some((item) => item.id === song.id)) {
+  if (data[0]["favorites"].some((item) => item.id === song.id)) {
     return (
       <BsStarFill
         color={COLORS.accentColor}
