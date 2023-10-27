@@ -12,7 +12,7 @@ function SongCard({ song, onClick }) {
       </div>
       <Button sx={{ padding: 0, color: COLORS.accentColor }}>
         <div style={styles.coverContainer} onClick={onClick}>
-          <img src={song.cover} style={styles.cover} />
+          <img src={song.coverLink} style={styles.cover} />
         </div>
       </Button>
     </div>

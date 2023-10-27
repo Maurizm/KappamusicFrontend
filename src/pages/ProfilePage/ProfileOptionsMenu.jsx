@@ -1,38 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
-import { BsPersonCircle } from "react-icons/bs";
-import { BiLogOut } from "react-icons/bi";
 import { COLORS } from "../../colors/colors";
 import { useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase/credenciales";
-import playerContext from "../../context/PlayerContext/PlayerContext";
+import { SlOptions } from "react-icons/sl";
 
-export default function ProfileMenu() {
+function ProfileOptionsMenu() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const { userData } = useContext(playerContext);
-  const [data, setData] = useState([]);
-  const [profileLink, setProfileLink] = useState("");
-
-  useEffect(() => {
-    setData(userData);
-    if (userData.length > 0) {
-      setProfileLink(userData[0]["profilePhotoLink"]);
-    }
-  }, [userData]);
-
-  const handleSingOut = async () => {
-    await signOut(auth).then(navigate("/"));
-  };
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -41,27 +20,32 @@ export default function ProfileMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  if (data.length == 0) {
-    return;
-  }
   return (
     <>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Tooltip title="Opciones de Perfil">
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <Tooltip title="Opciones">
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ ml: 2, backgroundColor: COLORS.backgroundColor }}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 35, height: 35 }}>
-              {profileLink.length == 0 ? (
-                <BsPersonCircle size={35} color={COLORS.accentColor} />
-              ) : (
-                <img src={profileLink} style={{ height: 35, width: 35 }} />
-              )}
+            <Avatar
+              sx={{
+                width: 35,
+                height: 35,
+                backgroundColor: COLORS.backgroundColor,
+              }}
+            >
+              <SlOptions size={35} color={COLORS.accentColor} />
             </Avatar>
           </IconButton>
         </Tooltip>
@@ -105,17 +89,12 @@ export default function ProfileMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={() => navigate("/profile")}>
-          <Avatar /> Perfil
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={() => handleSingOut()}>
-          <ListItemIcon>
-            <BiLogOut color={COLORS.accentColor} size={22} />
-          </ListItemIcon>
-          Cerrar Sesión
+        <MenuItem onClick={() => navigate("/editProfile")}>
+          <Avatar /> Editar Perfil
         </MenuItem>
       </Menu>
     </>
   );
 }
+
+export default ProfileOptionsMenu;

@@ -3,6 +3,7 @@ import { styles } from "./styles";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import { Divider, Paper, Typography } from "@mui/material";
 import { COLORS } from "../../colors/colors";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 function ListSongCard({ song, onClick }) {
   return (
@@ -30,7 +31,7 @@ function ListSongCard({ song, onClick }) {
         elevation={0}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img src={song.cover} style={styles.image} onClick={onClick} />
+          <img src={song.coverLink} style={styles.image} onClick={onClick} />
           <div style={{ paddingLeft: 10 }}>
             <Typography color={COLORS.textColor}>{song.title}</Typography>
             <Typography color={COLORS.textColor}>{song.artist}</Typography>
@@ -38,11 +39,7 @@ function ListSongCard({ song, onClick }) {
           </div>
         </div>
         <div>
-          {song.isFavorite ? (
-            <BsStarFill color={COLORS.accentColor} />
-          ) : (
-            <BsStar color={COLORS.accentColor} />
-          )}
+          <FavoriteButton song={song} />
         </div>
       </Paper>
       <Divider color={COLORS.accentColor} sx={{ height: 2 }} />

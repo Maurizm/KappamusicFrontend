@@ -10,6 +10,11 @@ const playerReducer = (state, action) => {
         ...state,
         songsList: action.data,
       };
+    case "SET_USER_DATA":
+      return {
+        ...state,
+        userData: action.data,
+      };
 
     default:
       break;

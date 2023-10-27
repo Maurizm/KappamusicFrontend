@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { auth } from "../../firebase/credenciales";
+import { setNewUser } from "../../firebase/hooks/setNewUser";
 
 const Login = () => {
   const [registrando, setRegistrando] = useState(false);
@@ -18,7 +19,9 @@ const Login = () => {
 
     if (registrando) {
       try {
-        await createUserWithEmailAndPassword(auth, correo, contraseña);
+        await createUserWithEmailAndPassword(auth, correo, contraseña).then(
+          () => setNewUser()
+        );
       } catch (error) {
         alert("La contraseña debe tener más de 8 caracteres");
       }
@@ -31,9 +34,9 @@ const Login = () => {
     }
   };
   const imagenesCarrusel = [
-    "assets/im1.jpeg",
-    "assets/im2.jpeg",
-    "assets/im3.jpeg",
+    "../../assets/im1.jpeg",
+    "../../assets/im2.jpeg",
+    "../../assets/im3.jpeg",
   ];
   const settings = {
     dots: true,
@@ -55,10 +58,10 @@ const Login = () => {
         backgroundColor: "#0A100D",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        //alignItems: "center",
       }}
     >
-      <Slider {...settings}>
+      {/* <Slider {...settings}>
         {imagenesCarrusel.map((imagen, index) => (
           <div key={index}>
             <img
@@ -68,7 +71,7 @@ const Login = () => {
             />
           </div>
         ))}
-      </Slider>
+      </Slider> */}
       <div
         className="card card-body shadow-lg"
         style={{ backgroundColor: "#0A100D" }}

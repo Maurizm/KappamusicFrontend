@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { signOut } from "firebase/auth";
+
 import { auth } from "../../firebase/credenciales";
+import { signOut } from "firebase/auth";
 
 export const Home = ({ correoUsuario }) => {
   return (

@@ -8,15 +8,16 @@ import TopBar from "../../components/TopBar/TopBar";
 import songs from "../../assets/songs.json";
 import SideBar from "../../components/SideBar";
 import playerContext from "../../context/PlayerContext/PlayerContext";
+import LoadingComponent from "../../components/LoadingComponent";
 
 function HomePage() {
   const { songsList, setCurrentSong } = useContext(playerContext);
-  const [playerKey, setPlayerKey] = useState(0);
-  const [music, setMusic] = useState(null);
+
   function onHandleClick(music) {
-    //setMusic(music);
-    //setPlayerKey((key) => key + 1);
     setCurrentSong(music);
+  }
+  if (songsList.length == 0) {
+    return <LoadingComponent />;
   }
   return (
     <div>
@@ -29,9 +30,6 @@ function HomePage() {
           />
         ))}
       </div>
-      {/* <div style={styles.musicPlayerContainer}>
-        <MusicPlayer song={music} key={playerKey} />
-      </div> */}
     </div>
   );
 }

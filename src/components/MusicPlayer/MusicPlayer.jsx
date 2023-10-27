@@ -7,6 +7,7 @@ import { COLORS } from "../../colors/colors";
 import { isEmpty } from "./hooks/isEmpty";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import { BsStarFill, BsStar } from "react-icons/bs";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 function MusicPlayer() {
   const { currentSong } = useContext(playerContext);
@@ -17,7 +18,7 @@ function MusicPlayer() {
           style={styles.cover}
           src={
             !isEmpty(currentSong)
-              ? currentSong.cover
+              ? currentSong.coverLink
               : "https://files.readme.io/f2e91bb-portalDocs-sonosApp-defaultArtAlone.png"
           }
         />
@@ -54,11 +55,7 @@ function MusicPlayer() {
         customAdditionalControls={[
           RHAP_UI.LOOP,
           <div>
-            {currentSong.isFavorite ? (
-              <BsStarFill color={COLORS.accentColor} size={22} />
-            ) : (
-              <BsStar color={COLORS.accentColor} size={22} />
-            )}
+            <FavoriteButton song={currentSong} />
           </div>,
         ]}
       />

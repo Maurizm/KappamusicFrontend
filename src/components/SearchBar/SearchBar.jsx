@@ -11,7 +11,7 @@ function SearchBar() {
     const stringValue = e.target.value
       .trim()
       .toLowerCase()
-      .replace(/[^A-zÀ-ú0-9\s]/gi, "");
+      .replace(/[^A-zÀ-ú0-9-\s]/gi, "");
     e.preventDefault();
     setSearchInput(stringValue);
   };
