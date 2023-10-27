@@ -9,19 +9,32 @@ import { getUserData } from "../../firebase/hooks/getUserData";
 function FavoriteButton({ song }) {
   const { userData, setUserData } = useContext(playerContext);
   const [data, setData] = useState(userData);
+  const [track, setTrack] = useState("");
 
   const onHandleClickAdd = async (song) => {
-    await updateFavorites(song).then(() => getUserData(setUserData));
+    await updateFavorites(song)
+      .then(() => getUserData(setUserData))
+      .then(() =>
+        setTimeout(() => {
+          setTrack("done");
+        }, 5000)
+      );
     console.log("add");
   };
   const onHandleClickRemove = async (song) => {
-    await removeFavorites(song).then(() => getUserData(setUserData));
+    await removeFavorites(song)
+      .then(() => getUserData(setUserData))
+      .then(() =>
+        setTimeout(() => {
+          setTrack("done");
+        }, 500)
+      );
     console.log("remove");
   };
 
   useEffect(() => {
     setData([...userData]);
-  }, [userData]);
+  }, [track, userData]);
 
   if (data.length == 0) {
     return null;
