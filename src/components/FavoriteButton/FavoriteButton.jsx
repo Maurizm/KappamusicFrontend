@@ -9,27 +9,24 @@ import { getUserData } from "../../firebase/hooks/getUserData";
 function FavoriteButton({ song }) {
   const { userData, setUserData } = useContext(playerContext);
   const [data, setData] = useState([]);
-  const [playerKey, setPlayerKey] = useState(0);
 
   const onHandleClickAdd = async (song) => {
     await updateFavorites(song).then(() => getUserData(setUserData));
     console.log("add");
-    setPlayerKey((key) => key + 1);
   };
   const onHandleClickRemove = async (song) => {
     await removeFavorites(song).then(() => getUserData(setUserData));
     console.log("remove");
-    setPlayerKey((key) => key + 1);
   };
 
   useEffect(() => {
     setData(userData);
-  }, [userData, playerKey]);
+  }, [userData]);
 
-  if (data.length == 0) {
+  if (userData.length == 0) {
     return null;
   }
-  if (data[0]["favorites"].some((item) => item.id === song.id)) {
+  if (userData[0]["favorites"].some((item) => item.id === song.id)) {
     return (
       <BsStarFill
         color={COLORS.accentColor}
