@@ -9,7 +9,10 @@ export const getUserData = async (setData) => {
       ...doc.data(),
       //id: doc.id,
     }));
-    console.log(newData);
-    setData([...newData]);
+    //console.log(newData);
+    setTimeout(function () {
+      //console.log("adentro");
+      setData([...newData]);
+    }, 500);
   });
 };
