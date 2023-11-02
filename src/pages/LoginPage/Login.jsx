@@ -118,7 +118,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             pattern="[^ ]+" //para que no permita espacios
-            title="el correo no debe contener espacios."
+            title="el correo  no debe contener espacios."
             maxLength="50" //solo se puede ingresar hasta 50 caracteres
           />
           <h2>Contraseña</h2>
@@ -171,7 +171,7 @@ const Login = () => {
           )}
 
           <button className="btnform">
-            {registrando ? "Registrate" : "Inicia Sesion"}
+            {registrando ? "Registrate" : "Iniciar Sesión"}
           </button>
         </form>
         <h4 className="texto">
@@ -180,7 +180,7 @@ const Login = () => {
             className="btnswitch"
             onClick={() => setRegistrando(!registrando)}
           >
-            {registrando ? "Inicia Sesion" : "Registrate"}
+            {registrando ? "Iniciar Sesión" : "Registrate"}
           </button>
         </h4>
       </div>
