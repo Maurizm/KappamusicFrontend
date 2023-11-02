@@ -4,6 +4,8 @@ import playerContext from "./PlayerContext";
 import songs from "../../assets/songs.json";
 import { getData } from "../../firebase/hooks/getData";
 import { getUserData } from "../../firebase/hooks/getUserData";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { auth, db } from "../../firebase/credenciales";
 
 function PlayerState(props) {
   const initialState = {
@@ -15,7 +17,21 @@ function PlayerState(props) {
 
   useEffect(() => {
     const getMusicLibrary = async () => {
-      await getData(setSongsList).then(() => getUserData(setUserData));
+      await getData(setSongsList);
+      //onSnapshot para cargar datos en tiempo real
+      //Necesario el de crear constante para que agregue delay(supongo) y se cargue nuevos datos.
+      onSnapshot(
+        query(
+          collection(db, "users"),
+          where("email", "==", auth.currentUser.email)
+        ),
+        (snapshot) => {
+          const newData = snapshot.docs.map((doc) => ({ ...doc.data() }));
+          //setUserData(snapshot.docs.map((doc) => ({ ...doc.data() })));
+          setUserData(newData);
+          console.log("snapshot", newData);
+        }
+      );
     };
     getMusicLibrary();
   }, []);

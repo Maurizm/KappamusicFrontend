@@ -5,6 +5,8 @@ import { COLORS } from "../../colors/colors";
 import { updateFavorites } from "../../firebase/hooks/updateFavorites";
 import { removeFavorites } from "../../firebase/hooks/removeFavorites";
 import { getUserData } from "../../firebase/hooks/getUserData";
+import { isEmpty } from "../MusicPlayer/hooks/isEmpty";
+import { Button } from "@mui/material";
 
 function FavoriteButton({ song }) {
   const { userData, setUserData } = useContext(playerContext);
@@ -12,11 +14,14 @@ function FavoriteButton({ song }) {
   const [track, setTrack] = useState("");
 
   const onHandleClick = async (song, action) => {
+    if (isEmpty(song)) {
+      return;
+    }
     if (action == "add") {
-      await updateFavorites(song).then(() => getUserData(setUserData));
+      await updateFavorites(song);
       console.log("add");
     } else {
-      await removeFavorites(song).then(() => getUserData(setUserData));
+      await removeFavorites(song);
       console.log("remove");
     }
   };
@@ -30,28 +35,24 @@ function FavoriteButton({ song }) {
   //   console.log("remove");
   // };
 
-  useEffect(() => {
-    setData([...userData]);
-  }, [userData]);
+  // useEffect(() => {
+  //   setData([...userData]);
+  // }, [userData]);
 
-  if (data.length == 0) {
+  if (userData.length == 0) {
     return null;
   }
-  if (data[0]["favorites"].some((item) => item.id === song.id)) {
+  if (userData[0]["favorites"].some((item) => item.id === song.id)) {
     return (
-      <BsStarFill
-        color={COLORS.accentColor}
-        size={22}
-        onClick={() => onHandleClick(song, "remove")}
-      />
+      <Button onClick={() => onHandleClick(song, "remove")}>
+        <BsStarFill color={COLORS.accentColor} size={22} />
+      </Button>
     );
   } else {
     return (
-      <BsStar
-        color={COLORS.accentColor}
-        size={22}
-        onClick={() => onHandleClick(song, "add")}
-      />
+      <Button onClick={() => onHandleClick(song, "add")}>
+        <BsStar color={COLORS.accentColor} size={22} />
+      </Button>
     );
   }
 }

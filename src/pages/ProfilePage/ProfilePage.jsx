@@ -10,9 +10,11 @@ function ProfilePage() {
   const { userData } = useContext(playerContext);
   const [data, setData] = useState([]);
 
+  //Necesario usar data y userData de forma hibrida como en defaultName={userData[0]....} y data para lo demas
   useEffect(() => {
     setData(userData);
   }, [userData]);
+
   if (data.length == 0) {
     return <LoadingComponent />;
   }
@@ -47,7 +49,7 @@ function ProfilePage() {
         </Box>
         <Box>
           <TextField
-            defaultValue={data[0]["name"]}
+            defaultValue={userData[0]["name"]}
             label={"Nombre"}
             fullWidth
             InputProps={{
