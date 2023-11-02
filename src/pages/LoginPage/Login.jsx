@@ -21,7 +21,10 @@ const Login = () => {
     //alert(correo)
     if (registrando === true) {
       try {
-        await createUserWithEmailAndPassword(auth, correo, contraseña);
+        await createUserWithEmailAndPassword(auth, correo, contraseña).then(
+          () => setNewUser()
+        );
+        window.location.reload();
       } catch (error) {
         //alert(error.code);
         if (error.code === "auth/email-already-in-use") {
@@ -39,6 +42,7 @@ const Login = () => {
     } else {
       try {
         await signInWithEmailAndPassword(auth, correo, contraseña);
+        window.location.reload();
       } catch (error) {
         //alert(error.code)
         if (error.code === "auth/invalid-email") {

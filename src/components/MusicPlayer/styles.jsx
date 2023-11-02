@@ -24,7 +24,6 @@ export const styles = {
   albumInfo: {
     fontSize: 14,
     whiteSpace: "nowrap",
-    userSelect: "none",
   },
   artistInfo: {
     whiteSpace: "nowrap",
