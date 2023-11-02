@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { auth } from "../../firebase/credenciales";
 import { setNewUser } from "../../firebase/hooks/setNewUser";
+import { enqueueSnackbar } from "notistack";
 
 const Login = () => {
   const [registrando, setRegistrando] = useState(false);
@@ -28,13 +29,24 @@ const Login = () => {
       } catch (error) {
         //alert(error.code);
         if (error.code === "auth/email-already-in-use") {
-          alert("dirección de correo electrónico  ya está registrada");
+          //alert("dirección de correo electrónico  ya está registrada");
+          enqueueSnackbar(
+            "Dirección de correo electrónico ya está registrada",
+            { variant: "error" }
+          );
         } else {
           if (error.code === "auth/weak-password") {
-            alert("La contraseña que ingresaste no es segura intenta de nuevo");
+            //alert("La contraseña que ingresaste no es segura intenta de nuevo");
+            enqueueSnackbar(
+              "La contraseña que ingresaste no es segura intenta de nuevo",
+              { variant: "warning" }
+            );
           } else {
             if (error.code === "auth/invalid-email") {
-              alert("El usuario/contraseña es invalido");
+              //alert("El usuario/contraseña es invalido");
+              enqueueSnackbar("El usuario/contraseña es invalido", {
+                variant: "warning",
+              });
             }
           }
         }
@@ -46,13 +58,22 @@ const Login = () => {
       } catch (error) {
         //alert(error.code)
         if (error.code === "auth/invalid-email") {
-          alert("El usuario/contraseña es invalido"); //Se verifica que cuando el campo email este vacio se muestre un mensaje “El usuario/contraseña es invalido”
+          //alert("El usuario/contraseña es invalido"); //Se verifica que cuando el campo email este vacio se muestre un mensaje “El usuario/contraseña es invalido”
+          enqueueSnackbar("El usuario/contraseña es invalido", {
+            variant: "warning",
+          });
         } else {
           if (error.code === "auth/invalid-login-credentials") {
-            alert("Credenciales Incorrectas"); //cuando pones mal la contraseña
+            //alert("Credenciales Incorrectas"); //cuando pones mal la contraseña
+            enqueueSnackbar("Credenciales Incorrectas", {
+              variant: "error",
+            });
           } else {
             if (error.code === "auth/missing-password") {
-              alert("El usuario/contraseña es invalido"); //cuando la contraseña esta vacia
+              //alert("El usuario/contraseña es invalido"); //cuando la contraseña esta vacia
+              enqueueSnackbar("El usuario/contraseña es invalido", {
+                variant: "warning",
+              });
             }
           }
         }
@@ -116,7 +137,7 @@ const Login = () => {
             // className="cajatexto"
             // id="email"
             type="text"
-            placeholder="Ingresar correo electrónico           *"
+            placeholder="Ingresar correo electrónico                        *"
             className="cajatexto"
             id="email"
             value={email}
@@ -126,53 +147,57 @@ const Login = () => {
             maxLength="50" //solo se puede ingresar hasta 50 caracteres
           />
           <h2>Contraseña</h2>
-          <input
-            // type="password"
-            // placeholder="Ingresar contraseña"
-            // className="cajatexto"
-            // id="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="Ingresar contraseña                   *"
-            className="cajatexto"
-            id="password"
-            pattern="[^ ]+" //para que no permita espacios
-            title="la contraseña no debe contener espacios."
-            maxLength="100" //solo permite ingresar 100 caracteres
-            //disabled
-          />
-          {/* seccion para mostrar el ojo  */}
-          {showPassword ? (
-            <svg
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              height={"1.5rem"}
-            >
-              <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM22.676 12.553a11.249 11.249 0 01-2.631 4.31l-3.099-3.099a5.25 5.25 0 00-6.71-6.71L7.759 4.577a11.217 11.217 0 014.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113z" />
-              <path d="M15.75 12c0 .18-.013.357-.037.53l-4.244-4.243A3.75 3.75 0 0115.75 12zM12.53 15.713l-4.243-4.244a3.75 3.75 0 004.243 4.243z" />
-              <path d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 00-2.63 4.31c-.12.362-.12.752 0 1.114 1.489 4.467 5.704 7.69 10.675 7.69 1.5 0 2.933-.294 4.242-.827l-2.477-2.477A5.25 5.25 0 016.75 12z" />
-            </svg>
-          ) : (
-            <svg
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              height={"1.5rem"}
-            >
-              <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
-              <path
-                fillRule="evenodd"
-                d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          )}
+          <div style={{ display: "flex", width: "125%" }}>
+            <input
+              // type="password"
+              // placeholder="Ingresar contraseña"
+              // className="cajatexto"
+              // id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Ingresar contraseña                                  *"
+              className="cajatexto"
+              id="password"
+              pattern="[^ ]+" //para que no permita espacios
+              title="la contraseña no debe contener espacios."
+              maxLength="100" //solo permite ingresar 100 caracteres
+              //disabled
+            />
+            {/* seccion para mostrar el ojo  */}
+            {showPassword ? (
+              <svg
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                height={"2.0rem"}
+                className="eyeicon"
+              >
+                <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM22.676 12.553a11.249 11.249 0 01-2.631 4.31l-3.099-3.099a5.25 5.25 0 00-6.71-6.71L7.759 4.577a11.217 11.217 0 014.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113z" />
+                <path d="M15.75 12c0 .18-.013.357-.037.53l-4.244-4.243A3.75 3.75 0 0115.75 12zM12.53 15.713l-4.243-4.244a3.75 3.75 0 004.243 4.243z" />
+                <path d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 00-2.63 4.31c-.12.362-.12.752 0 1.114 1.489 4.467 5.704 7.69 10.675 7.69 1.5 0 2.933-.294 4.242-.827l-2.477-2.477A5.25 5.25 0 016.75 12z" />
+              </svg>
+            ) : (
+              <svg
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                height={"2.0rem"}
+                className="eyeicon"
+              >
+                <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+                <path
+                  fillRule="evenodd"
+                  d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            )}
+          </div>
 
           <button className="btnform">
             {registrando ? "Registrate" : "Iniciar Sesión"}

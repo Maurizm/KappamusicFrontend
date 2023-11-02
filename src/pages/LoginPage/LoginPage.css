@@ -27,6 +27,7 @@
   border-width: 0px;
   margin-bottom: 20px;
 }
+
 .cajatexto:focus {
   outline: 1px solid #8c8c8c;
   box-shadow: 0 0 20px #8c8c8c;
@@ -54,4 +55,8 @@
   border-width: 0px;
   color: white;
   font-size: 16px;
+}
+.eyeicon {
+  margin-top: 5px;
+  margin-left: 5px;
 }

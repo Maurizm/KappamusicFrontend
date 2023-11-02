@@ -7,11 +7,10 @@ import { removeFavorites } from "../../firebase/hooks/removeFavorites";
 import { getUserData } from "../../firebase/hooks/getUserData";
 import { isEmpty } from "../MusicPlayer/hooks/isEmpty";
 import { Button } from "@mui/material";
+import { enqueueSnackbar } from "notistack";
 
 function FavoriteButton({ song }) {
-  const { userData, setUserData } = useContext(playerContext);
-  const [data, setData] = useState(userData);
-  const [track, setTrack] = useState("");
+  const { userData } = useContext(playerContext);
 
   const onHandleClick = async (song, action) => {
     if (isEmpty(song)) {
@@ -19,9 +18,11 @@ function FavoriteButton({ song }) {
     }
     if (action == "add") {
       await updateFavorites(song);
+      enqueueSnackbar("Añadido a Favoritos", { variant: "success" });
       console.log("add");
     } else {
       await removeFavorites(song);
+      enqueueSnackbar("Removido de Favoritos", { variant: "warning" });
       console.log("remove");
     }
   };
