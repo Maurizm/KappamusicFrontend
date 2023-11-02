@@ -19,7 +19,7 @@ import playerContext from "../../context/PlayerContext/PlayerContext";
 export default function ProfileMenu() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-  const { userData } = useContext(playerContext);
+  const { userData, setCurrentSong } = useContext(playerContext);
   const [data, setData] = useState([]);
   const [profileLink, setProfileLink] = useState("");
 
@@ -31,6 +31,7 @@ export default function ProfileMenu() {
   }, [userData]);
 
   const handleSingOut = async () => {
+    setCurrentSong({});
     await signOut(auth).then(navigate("/"));
   };
 
