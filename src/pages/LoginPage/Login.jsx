@@ -9,6 +9,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { auth } from "../../firebase/credenciales";
 import { setNewUser } from "../../firebase/hooks/setNewUser";
 import { enqueueSnackbar } from "notistack";
+import { Box } from "@mui/material";
+import Logo from "../../assets/im1.jpeg";
 
 const Login = () => {
   const [registrando, setRegistrando] = useState(false);
@@ -120,6 +122,15 @@ const Login = () => {
           </div>
         ))}
       </Slider> */}
+      {window.screen.width > 600 && (
+        <Box
+          component="img"
+          sx={{ width: 700, height: "auto", marginRight: 20 }}
+          src={Logo}
+          alt="Logo"
+        />
+      )}
+
       <div
         className="card card-body shadow-lg"
         style={{ backgroundColor: "#0A100D" }}
