@@ -28,7 +28,7 @@ function EditProfilePage() {
     return /^\s+$/.test(name);
   };
   const onHandleSubmit = async () => {
-    await updateProfileData(name, profileLink);
+    await updateProfileData(name.trim(), profileLink);
     //await getUserData(setUserData);
     navigate(-1);
   };
