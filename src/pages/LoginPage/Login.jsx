@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail
 } from "firebase/auth";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -80,6 +81,21 @@ const Login = () => {
           }
         }
       }
+    }
+  };
+
+/* para restablecer la contraseña */
+  const handleResetPassword = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert(
+        "Se ha enviado un correo electrónico con instrucciones para restablecer la contraseña"
+      );
+      setEmail(""); // Borra el campo de entrada de correo electrónico
+    } catch (error) {
+      alert(
+        "Error al enviar el correo electrónico de restablecimiento de contraseña"
+      );
     }
   };
 
@@ -214,6 +230,11 @@ const Login = () => {
             {registrando ? "Registrate" : "Iniciar Sesión"}
           </button>
         </form>
+
+        <button type="button" onClick={handleResetPassword} className="btnform">
+          Olvidaste tu Contraseña
+        </button>
+
         <h4 className="texto">
           {registrando ? "Si ya tienes cuenta" : "No tienes cuenta "}
           <button
