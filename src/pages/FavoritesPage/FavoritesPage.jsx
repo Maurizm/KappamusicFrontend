@@ -22,15 +22,24 @@ function FavoritesPage() {
       <Typography noWrap overflow={"hidden"} variant="h2">
         Favoritos
       </Typography>
-      {data[0]["favorites"].map((song) => {
-        return (
-          <ListSongCard
-            song={song}
-            onClick={() => setCurrentSong(song)}
-            key={song.id}
-          />
-        );
-      })}
+      {data[0]["favorites"].length == 0 ? (
+        <Typography
+          sx={{ textAlign: "center", color: "gray", marginTop: 5 }}
+          variant="h6"
+        >
+          No Tienes Canciones Agregadas a Favoritos.
+        </Typography>
+      ) : (
+        data[0]["favorites"].map((song) => {
+          return (
+            <ListSongCard
+              song={song}
+              onClick={() => setCurrentSong(song)}
+              key={song.id}
+            />
+          );
+        })
+      )}
     </div>
   );
 }
