@@ -15,6 +15,14 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/credenciales";
 import playerContext from "../../context/PlayerContext/PlayerContext";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 
 export default function ProfileMenu() {
   const navigate = useNavigate();
@@ -22,6 +30,7 @@ export default function ProfileMenu() {
   const { userData, setCurrentSong } = useContext(playerContext);
   const [data, setData] = useState([]);
   const [profileLink, setProfileLink] = useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     setData(userData);
@@ -41,6 +50,12 @@ export default function ProfileMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true);
+  };
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
   };
   if (data.length == 0) {
     return;
@@ -110,13 +125,49 @@ export default function ProfileMenu() {
           <Avatar /> Perfil
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => handleSingOut()}>
+        <MenuItem onClick={() => handleDialogOpen()}>
           <ListItemIcon>
             <BiLogOut color={COLORS.accentColor} size={22} />
           </ListItemIcon>
           Cerrar Sesión
         </MenuItem>
       </Menu>
+      <Dialog
+        open={isDialogOpen}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        sx={{
+          "& .MuiPaper-root": {
+            background: COLORS.highlightBackgroundColor,
+            color: COLORS.textColor,
+          },
+        }}
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"¿Estás seguro de que quieres cerrar sesión?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            sx={{ color: COLORS.textColor }}
+          >
+            Si quieres cerrar sesión, haz clic en el botón CONFIRMAR. Si quieres
+            seguir navegando, haz clic en el botón CANCELAR.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleDialogClose}
+            sx={{ color: COLORS.accentColor }}
+          >
+            Cancelar
+          </Button>
+          <Button onClick={() => handleSingOut()} autoFocus color="error">
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

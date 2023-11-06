@@ -14,6 +14,7 @@ const style = {
   boxShadow: 24,
   p: 4,
   backgroundColor: COLORS.highlightBackgroundColor,
+  textAlign: "center",
 };
 
 function ModalProfilePhoto({ setProfileLink }) {
@@ -50,7 +51,12 @@ function ModalProfilePhoto({ setProfileLink }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ marginBottom: 2 }}
+          >
             Seleccione una foto:
           </Typography>
           {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -73,6 +79,15 @@ function ModalProfilePhoto({ setProfileLink }) {
               />
             </Button>
           ))}
+          <div style={{ textAlign: "center", marginTop: 15 }}>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => onHandleSelectPhoto("")}
+            >
+              ELIMINAR FOTO DE PERFIL
+            </Button>
+          </div>
         </Box>
       </Modal>
     </div>
