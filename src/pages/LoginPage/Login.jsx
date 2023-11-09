@@ -11,7 +11,7 @@ import { auth } from "../../firebase/credenciales";
 import { setNewUser } from "../../firebase/hooks/setNewUser";
 import { enqueueSnackbar } from "notistack";
 import { Box } from "@mui/material";
-import Logo from "../../assets/im1.jpeg";
+import Logo from "../../assets/im1.png";
 
 const Login = () => {
   const [registrando, setRegistrando] = useState(false);

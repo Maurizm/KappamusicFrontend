@@ -77,7 +77,7 @@ const Login = () => {
         className="card card-body shadow-lg"
         style={{ backgroundColor: "#0A100D" }}
       >
-        <h1 style={{ color: "#dee2e6" }}>KappaMussic</h1>
+        <h1 style={{ color: "#dee2e6" }}>KappaMusic</h1>
         <form onSubmit={functAutenticacion}>
           <h2>Email </h2>
           <input
