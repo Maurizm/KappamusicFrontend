@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { COLORS } from "../../colors/colors";
 import { useNavigate } from "react-router-dom";
 import { BsFillHouseFill, BsStarFill } from "react-icons/bs";
 import { List, ListItem, ListItemButton, ListItemIcon } from "@mui/material";
+import playerContext from "../../context/PlayerContext/PlayerContext";
+import PlaylistCard from "./PlaylistCard";
+import LoadingComponent from "../LoadingComponent";
 function SideBar() {
+  const { userData } = useContext(playerContext);
   const navigate = useNavigate();
+
+  if (userData.length == 0) {
+    return (
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          width: "20%",
+          backgroundColor: COLORS.highlightBackgroundColor,
+          borderRadius: 20,
+        }}
+      >
+        <div style={{ display: "flex" }}>
+          <LoadingComponent />
+        </div>
+      </div>
+    );
+  }
   return (
     <div
       style={{
@@ -39,6 +62,13 @@ function SideBar() {
             <div style={{ color: COLORS.accentColor }}>Favoritos</div>
           </ListItemButton>
         </ListItem>
+        {userData[0]["playlists"].map((playlist) => {
+          return (
+            <div key={playlist.id}>
+              <PlaylistCard playlist={playlist} />
+            </div>
+          );
+        })}
       </List>
       {/* <div
         onClick={() => navigate("/")}

@@ -17,6 +17,7 @@ import { auth } from "./firebase/credenciales";
 import LoginPage from "./pages/LoginPage";
 import EditProfilePage from "./pages/EditProfilePage";
 import LoadingComponent from "./components/LoadingComponent";
+import PlaylistPage from "./pages/PlaylistPage";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -43,6 +44,7 @@ function App() {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/editProfile" element={<EditProfilePage />} />
+              <Route path="/playlist/:playlistId" element={<PlaylistPage />} />
               <Route path="*" element={<Navigate to={"/"} replace />} />
             </Routes>
           </div>
