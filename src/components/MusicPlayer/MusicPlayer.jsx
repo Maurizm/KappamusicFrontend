@@ -8,9 +8,13 @@ import { isEmpty } from "./hooks/isEmpty";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import PlaylistButton from "../PlaylistButton";
 
 function MusicPlayer() {
   const { currentSong } = useContext(playerContext);
+  if (isEmpty(currentSong)) {
+    return;
+  }
   return (
     <div style={styles.container}>
       <div style={{ marginRight: 10 }}>
@@ -56,6 +60,9 @@ function MusicPlayer() {
           RHAP_UI.LOOP,
           <div>
             <FavoriteButton song={currentSong} />
+          </div>,
+          <div>
+            <PlaylistButton />
           </div>,
         ]}
       />

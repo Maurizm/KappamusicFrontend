@@ -4,8 +4,9 @@ import { BsStarFill, BsStar } from "react-icons/bs";
 import { Divider, Paper, Typography } from "@mui/material";
 import { COLORS } from "../../colors/colors";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import ListSongMenu from "./ListSongMenu";
 
-function ListSongCard({ song, onClick }) {
+function ListSongCard({ song, onClick, isInPlaylist = false, playlistId }) {
   return (
     // <div style={styles.container}>
     //   <img src={song.cover} style={styles.image} onClick={onClick} />
@@ -38,8 +39,17 @@ function ListSongCard({ song, onClick }) {
             <Typography style={styles.albumInfo}>{song.album}</Typography>
           </div>
         </div>
-        <div>
+        <div style={{ display: "flex" }}>
           <FavoriteButton song={song} />
+          {isInPlaylist ? (
+            <ListSongMenu
+              song={song}
+              isInPlaylist={true}
+              playlistId={playlistId}
+            />
+          ) : (
+            <ListSongMenu song={song} />
+          )}
         </div>
       </Paper>
       <Divider color={COLORS.accentColor} sx={{ height: 2 }} />
