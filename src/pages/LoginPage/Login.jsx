@@ -230,7 +230,10 @@ const Login = () => {
             {registrando ? "Registrate" : "Iniciar Sesión"}
           </button>
         </form>
-
+        
+        <button type="button" onClick={handleResetPassword} className="btnform">
+          Olvidaste tu contraseña
+        </button>
 
         <h4 className="texto">
           {registrando ? "Si ya tienes cuenta" : "No tienes cuenta "}
