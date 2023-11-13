@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 import ListSongCard from "../../components/ListSongCard/ListSongCard";
+import EditableTitle from "./EditableTitle";
 
 function PlaylistPage() {
   const { userData, setCurrentSong, playlistSongs, setPlaylistSongs } =
@@ -32,25 +33,41 @@ function PlaylistPage() {
   }
   return (
     <div>
-      <Typography variant="h3">{playlistData.name}</Typography>
+      <EditableTitle playlistData={playlistData} />
       {/* <Button onClick={() => handlePlayPlaylist()}>Reproducir Playlist</Button> */}
-      {playlistData.playlistSet.map((song, index) => {
-        return (
-          <div key={song.id} style={{ display: "flex", alignItems: "center" }}>
-            <Typography sx={{ marginRight: 2 }} variant="body" fontWeight={500}>
-              {index + 1}
-            </Typography>
-            <div style={{ width: "100%" }}>
-              <ListSongCard
-                song={song}
-                isInPlaylist={true}
-                playlistId={playlistId}
-                onClick={() => setCurrentSong(song)}
-              />
+      {playlistData.playlistSet.length == 0 ? (
+        <Typography
+          sx={{ textAlign: "center", color: "gray", marginTop: 5 }}
+          variant="h6"
+        >
+          No Tienes Canciones Agregadas a Esta Playlist.
+        </Typography>
+      ) : (
+        playlistData.playlistSet.map((song, index) => {
+          return (
+            <div
+              key={song.id}
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Typography
+                sx={{ marginRight: 2 }}
+                variant="body"
+                fontWeight={500}
+              >
+                {index + 1}
+              </Typography>
+              <div style={{ width: "100%" }}>
+                <ListSongCard
+                  song={song}
+                  isInPlaylist={true}
+                  playlistId={playlistId}
+                  onClick={() => setCurrentSong(song)}
+                />
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
     </div>
   );
 }

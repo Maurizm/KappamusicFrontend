@@ -19,7 +19,7 @@ function FavoritesPage() {
 
   return (
     <div>
-      <Typography noWrap overflow={"hidden"} variant="h2">
+      <Typography noWrap overflow={"hidden"} variant="h2" marginBottom={3}>
         Favoritos
       </Typography>
       {data[0]["favorites"].length == 0 ? (

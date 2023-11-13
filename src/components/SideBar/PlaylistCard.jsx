@@ -15,7 +15,17 @@ function PlaylistCard({ playlist }) {
         <ListItemIcon>
           <BiSolidPlaylist fontSize={30} color={COLORS.accentColor} />
         </ListItemIcon>
-        <div style={{ color: COLORS.accentColor }}>{playlist.name}</div>
+        <div
+          style={{
+            maxWidth: 175,
+            color: COLORS.accentColor,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {playlist.name}
+        </div>
       </ListItemButton>
     </ListItem>
   );
