@@ -33,7 +33,7 @@ function PlaylistPage() {
   return (
     <div>
       <Typography variant="h3">{playlistData.name}</Typography>
-      <Button onClick={() => handlePlayPlaylist()}>Reproducir Playlist</Button>
+      {/* <Button onClick={() => handlePlayPlaylist()}>Reproducir Playlist</Button> */}
       {playlistData.playlistSet.map((song, index) => {
         return (
           <div key={song.id} style={{ display: "flex", alignItems: "center" }}>
@@ -45,7 +45,7 @@ function PlaylistPage() {
                 song={song}
                 isInPlaylist={true}
                 playlistId={playlistId}
-                onClick={() => {}}
+                onClick={() => setCurrentSong(song)}
               />
             </div>
           </div>

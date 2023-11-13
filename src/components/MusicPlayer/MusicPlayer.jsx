@@ -12,6 +12,9 @@ import PlaylistButton from "../PlaylistButton";
 
 function MusicPlayer() {
   const { currentSong } = useContext(playerContext);
+  if (isEmpty(currentSong)) {
+    return;
+  }
   return (
     <div style={styles.container}>
       <div style={{ marginRight: 10 }}>
