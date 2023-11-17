@@ -6,12 +6,18 @@ import { COLORS } from "../../colors/colors";
 import LoadingComponent from "../../components/LoadingComponent";
 
 function FavoritesPage() {
-  const { songsList, setCurrentSong, userData } = useContext(playerContext);
+  const { songsList, setCurrentSong, userData, setPlaylistSongs } =
+    useContext(playerContext);
 
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(userData);
   }, [userData]);
+
+  const handleClick = (song) => {
+    setPlaylistSongs([]);
+    setCurrentSong(song);
+  };
 
   if (data.length == 0) {
     return <LoadingComponent />;
@@ -30,13 +36,27 @@ function FavoritesPage() {
           No Tienes Canciones Agregadas a Favoritos.
         </Typography>
       ) : (
-        data[0]["favorites"].map((song) => {
+        data[0]["favorites"].map((song, index) => {
           return (
-            <ListSongCard
-              song={song}
-              onClick={() => setCurrentSong(song)}
+            <div
               key={song.id}
-            />
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Typography
+                sx={{ marginRight: 2 }}
+                variant="body"
+                fontWeight={500}
+              >
+                {index + 1}
+              </Typography>
+              <div style={{ width: "100%" }}>
+                <ListSongCard
+                  song={song}
+                  onClick={() => handleClick(song)}
+                  key={song.id}
+                />
+              </div>
+            </div>
           );
         })
       )}

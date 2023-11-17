@@ -161,7 +161,7 @@ export default function PlaylistOptions({
         }}
       >
         <DialogTitle id="alert-dialog-title">
-          {"¿Estás seguro de que quieres esta playlist?"}
+          {"¿Estás seguro de que quieres eliminar esta playlist?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText

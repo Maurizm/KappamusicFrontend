@@ -41,6 +41,17 @@ function EditableTitle({ playlistData }) {
     setPlaylistName(playlistData.name);
   };
 
+  const handleEnterKey = async (e) => {
+    if (e.key === "Enter") {
+      if (isButtonDisabled) {
+        setIsNameFocused(false);
+      } else {
+        await updatePlaylistName(playlistName, userData, playlistData.id);
+        setIsNameFocused(false);
+      }
+    }
+  };
+
   return (
     <div
       style={{
@@ -79,6 +90,7 @@ function EditableTitle({ playlistData }) {
           value={playlistName}
           onChange={(event) => setPlaylistName(event.target.value)}
           onBlur={() => handleBlur()}
+          onKeyDown={handleEnterKey}
         />
       )}
       {/* {!isNameFocused ? (
