@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import H5AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import "./styles.css";
@@ -11,8 +11,67 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import PlaylistButton from "../PlaylistButton";
 
 function MusicPlayer() {
-  const { currentSong } = useContext(playerContext);
-  if (isEmpty(currentSong)) {
+  const { currentSong, playlistSongs, playlistIndex } =
+    useContext(playerContext);
+
+  const [currentTrack, setTrackIndex] = useState(0);
+  const [playlistCurrentSong, setPlaylistCurrentSong] = useState({});
+  const [inPlaylist, setInPlaylist] = useState(false);
+
+  useEffect(() => {
+    if (playlistSongs.length !== 0) {
+      setPlaylistCurrentSong(playlistSongs[currentTrack]);
+    }
+  }, [currentTrack]);
+
+  useEffect(() => {
+    setPlaylistCurrentSong(playlistSongs[0]);
+    if (playlistSongs.length !== 0) {
+      setInPlaylist(true);
+    } else {
+      setInPlaylist(false);
+    }
+    console.log(playlistSongs);
+  }, [playlistSongs]);
+
+  useEffect(() => {
+    if (playlistIndex != -1) {
+      setTrackIndex(playlistIndex);
+    }
+  }, [playlistIndex]);
+
+  const handleClickNext = () => {
+    console.log("click next");
+    if (playlistSongs.length !== 0) {
+      setTrackIndex((currentTrack) =>
+        currentTrack < playlistSongs.length - 1
+          ? currentTrack + 1
+          : playlistSongs.length - 1
+      );
+    }
+  };
+
+  const handleClickPrevious = () => {
+    console.log("click prev");
+    if (playlistSongs.length !== 0) {
+      setTrackIndex((currentTrack) =>
+        currentTrack === 0 ? 0 : currentTrack - 1
+      );
+    }
+  };
+
+  const handleEnd = () => {
+    console.log("end");
+    if (playlistSongs.length !== 0) {
+      setTrackIndex((currentTrack) =>
+        currentTrack < playlistSongs.length - 1
+          ? currentTrack + 1
+          : playlistSongs.length - 1
+      );
+    }
+  };
+
+  if (isEmpty(currentSong) && !inPlaylist) {
     return;
   }
   return (
@@ -21,48 +80,53 @@ function MusicPlayer() {
         <img
           style={styles.cover}
           src={
-            !isEmpty(currentSong)
-              ? currentSong.coverLink
-              : "https://files.readme.io/f2e91bb-portalDocs-sonosApp-defaultArtAlone.png"
+            inPlaylist ? playlistCurrentSong.coverLink : currentSong.coverLink
           }
         />
       </div>
       <div style={styles.songInformationContainer}>
         <div style={styles.artistInfo}>
-          {!isEmpty(currentSong) ? currentSong.artist : ""}
+          {inPlaylist ? playlistCurrentSong.artist : currentSong.artist}
         </div>
-        {!isEmpty(currentSong) && currentSong.title.length > 15 ? (
+        {(inPlaylist ? playlistCurrentSong : currentSong).title.length > 15 ? (
           <marquee style={styles.songInfo} scrollamount="4">
-            {!isEmpty(currentSong) ? currentSong.title : ""}
+            {inPlaylist ? playlistCurrentSong.title : currentSong.title}
           </marquee>
         ) : (
           <div style={styles.songInfo}>
-            {!isEmpty(currentSong) ? currentSong.title : ""}
+            {inPlaylist ? playlistCurrentSong.title : currentSong.title}
           </div>
         )}
 
-        {!isEmpty(currentSong) && currentSong.album.length > 18 ? (
+        {(inPlaylist ? playlistCurrentSong : currentSong).album.length > 18 ? (
           <marquee style={styles.albumInfo} scrollamount="4">
-            {!isEmpty(currentSong) ? currentSong.album : ""}
+            {inPlaylist ? playlistCurrentSong.album : currentSong.album}
           </marquee>
         ) : (
           <div style={styles.albumInfo}>
-            {!isEmpty(currentSong) ? currentSong.album : ""}
+            {inPlaylist ? playlistCurrentSong.album : currentSong.album}
           </div>
         )}
       </div>
       <H5AudioPlayer
-        src={!isEmpty(currentSong) ? currentSong.link : ""}
-        showSkipControls
+        src={inPlaylist ? playlistCurrentSong.link : currentSong.link}
+        showSkipControls={playlistSongs.length == 0 ? false : true}
+        onClickNext={handleClickNext}
+        onClickPrevious={handleClickPrevious}
+        onEnded={handleEnd}
         autoPlay
         volume={0.5}
         customAdditionalControls={[
           RHAP_UI.LOOP,
           <div>
-            <FavoriteButton song={currentSong} />
+            <FavoriteButton
+              song={inPlaylist ? playlistCurrentSong : currentSong}
+            />
           </div>,
           <div>
-            <PlaylistButton />
+            <PlaylistButton
+              song={inPlaylist ? playlistCurrentSong : currentSong}
+            />
           </div>,
         ]}
       />

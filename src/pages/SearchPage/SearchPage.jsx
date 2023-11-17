@@ -9,12 +9,14 @@ import { styles } from "./styles";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 
 function SearchPage() {
-  const { setCurrentSong, songsList } = useContext(playerContext);
+  const { setCurrentSong, songsList, setPlaylistSongs } =
+    useContext(playerContext);
 
   const { searchTerm } = useParams();
   const [filteredArray, setFilteredArray] = useState([]);
 
   const handleClick = (song) => {
+    setPlaylistSongs([]);
     setCurrentSong(song);
   };
 

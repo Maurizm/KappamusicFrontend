@@ -5,9 +5,11 @@ import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 import ListSongCard from "../../components/ListSongCard/ListSongCard";
 import EditableTitle from "./EditableTitle";
+import { COLORS } from "../../colors/colors";
+import { FaPlay } from "react-icons/fa6";
 
 function PlaylistPage() {
-  const { userData, setCurrentSong, playlistSongs, setPlaylistSongs } =
+  const { userData, playlistIndex, setPlaylistIndex, setPlaylistSongs } =
     useContext(playerContext);
   const { playlistId } = useParams();
 
@@ -17,11 +19,15 @@ function PlaylistPage() {
       : userData[0].playlists.find((playlist) => playlist.id == playlistId);
 
   const handlePlayPlaylist = () => {
-    // if (playlistSongs !== playlistData.playlistSet) {
-    //   setCurrentSong({});
-    //   setPlaylistSongs(playlistData.playlistSet);
-    // }
+    setPlaylistSongs([...playlistData.playlistSet]);
+    setPlaylistIndex(0);
+    console.log(playlistIndex, "playlistPageButton");
+  };
+
+  const handlePlaylistIndex = (index) => {
+    setPlaylistIndex(index);
     setPlaylistSongs(playlistData.playlistSet);
+    console.log(index, "playlistPage");
   };
 
   if (userData.length === 0) {
@@ -34,7 +40,22 @@ function PlaylistPage() {
   return (
     <div>
       <EditableTitle playlistData={playlistData} />
-      {/* <Button onClick={() => handlePlayPlaylist()}>Reproducir Playlist</Button> */}
+      <Button
+        onClick={() => handlePlayPlaylist()}
+        sx={{
+          backgroundColor: COLORS.highlightBackgroundColor,
+          color: COLORS.textColor,
+          borderRadius: 20,
+          paddingRight: 3,
+          paddingLeft: 3,
+          marginBottom: 2,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FaPlay size={18} style={{ marginRight: 10 }} />
+          Reproducir Playlist
+        </div>
+      </Button>
       {playlistData.playlistSet.length == 0 ? (
         <Typography
           sx={{ textAlign: "center", color: "gray", marginTop: 5 }}
@@ -61,7 +82,7 @@ function PlaylistPage() {
                   song={song}
                   isInPlaylist={true}
                   playlistId={playlistId}
-                  onClick={() => setCurrentSong(song)}
+                  onClick={() => handlePlaylistIndex(index)}
                 />
               </div>
             </div>

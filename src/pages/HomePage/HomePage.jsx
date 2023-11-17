@@ -11,9 +11,11 @@ import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 
 function HomePage() {
-  const { songsList, setCurrentSong } = useContext(playerContext);
+  const { songsList, setCurrentSong, setPlaylistSongs } =
+    useContext(playerContext);
 
   function onHandleClick(music) {
+    setPlaylistSongs([]);
     setCurrentSong(music);
   }
   if (songsList.length == 0) {
