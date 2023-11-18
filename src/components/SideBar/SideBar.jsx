@@ -2,10 +2,17 @@ import React, { useContext } from "react";
 import { COLORS } from "../../colors/colors";
 import { useNavigate } from "react-router-dom";
 import { BsFillHouseFill, BsStarFill } from "react-icons/bs";
-import { List, ListItem, ListItemButton, ListItemIcon } from "@mui/material";
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+} from "@mui/material";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import PlaylistCard from "./PlaylistCard";
 import LoadingComponent from "../LoadingComponent";
+import AddPlaylistCard from "./AddPlaylistCard";
 function SideBar() {
   const { userData } = useContext(playerContext);
   const navigate = useNavigate();
@@ -62,6 +69,8 @@ function SideBar() {
             <div style={{ color: COLORS.accentColor }}>Favoritos</div>
           </ListItemButton>
         </ListItem>
+        <Divider />
+        <AddPlaylistCard />
         {userData[0]["playlists"].map((playlist) => {
           return (
             <div key={playlist.id}>

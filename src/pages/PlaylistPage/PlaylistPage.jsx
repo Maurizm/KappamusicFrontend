@@ -40,22 +40,7 @@ function PlaylistPage() {
   return (
     <div>
       <EditableTitle playlistData={playlistData} />
-      <Button
-        onClick={() => handlePlayPlaylist()}
-        sx={{
-          backgroundColor: COLORS.highlightBackgroundColor,
-          color: COLORS.textColor,
-          borderRadius: 20,
-          paddingRight: 3,
-          paddingLeft: 3,
-          marginBottom: 2,
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <FaPlay size={18} style={{ marginRight: 10 }} />
-          Reproducir Playlist
-        </div>
-      </Button>
+
       {playlistData.playlistSet.length == 0 ? (
         <Typography
           sx={{ textAlign: "center", color: "gray", marginTop: 5 }}
@@ -64,30 +49,50 @@ function PlaylistPage() {
           No Tienes Canciones Agregadas a Esta Playlist.
         </Typography>
       ) : (
-        playlistData.playlistSet.map((song, index) => {
-          return (
-            <div
-              key={song.id}
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <Typography
-                sx={{ marginRight: 2 }}
-                variant="body"
-                fontWeight={500}
-              >
-                {index + 1}
-              </Typography>
-              <div style={{ width: "100%" }}>
-                <ListSongCard
-                  song={song}
-                  isInPlaylist={true}
-                  playlistId={playlistId}
-                  onClick={() => handlePlaylistIndex(index)}
-                />
-              </div>
+        <div>
+          <Button
+            onClick={() => handlePlayPlaylist()}
+            sx={{
+              backgroundColor: COLORS.highlightBackgroundColor,
+              color: COLORS.textColor,
+              borderRadius: 20,
+              paddingRight: 3,
+              paddingLeft: 3,
+              marginBottom: 2,
+              marginLeft: 2,
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FaPlay size={18} style={{ marginRight: 10 }} />
+              Reproducir Playlist
             </div>
-          );
-        })
+          </Button>
+
+          {playlistData.playlistSet.map((song, index) => {
+            return (
+              <div
+                key={song.id}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Typography
+                  sx={{ marginRight: 2 }}
+                  variant="body"
+                  fontWeight={500}
+                >
+                  {index + 1}
+                </Typography>
+                <div style={{ width: "100%" }}>
+                  <ListSongCard
+                    song={song}
+                    isInPlaylist={true}
+                    playlistId={playlistId}
+                    onClick={() => handlePlaylistIndex(index)}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
       )}
     </div>
   );

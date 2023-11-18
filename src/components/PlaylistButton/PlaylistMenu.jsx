@@ -51,7 +51,13 @@ export default function PlaylistMenu() {
   };
 
   const handleCreatePlaylist = async () => {
-    await createEmptyPlaylist(userData[0]["playlists"].length);
+    if (userData[0]["playlists"].length <= 4) {
+      await createEmptyPlaylist(userData[0]["playlists"].length);
+    } else {
+      enqueueSnackbar("Solo puedes tener un máximo de 5 Playlists.", {
+        variant: "error",
+      });
+    }
   };
 
   const open = Boolean(anchorEl);
