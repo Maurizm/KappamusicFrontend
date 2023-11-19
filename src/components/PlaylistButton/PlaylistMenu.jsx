@@ -22,7 +22,7 @@ import { NestedMenuItem } from "mui-nested-menu";
 import { enqueueSnackbar } from "notistack";
 import { addToPlaylist } from "../../firebase/hooks/addToPlaylist";
 
-export default function PlaylistMenu() {
+export default function PlaylistMenu(props) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const { userData, setCurrentSong, currentSong } = useContext(playerContext);
@@ -36,7 +36,7 @@ export default function PlaylistMenu() {
 
   const handleAddToPlaylist = async (data, id) => {
     try {
-      await addToPlaylist(currentSong, data, id);
+      await addToPlaylist(props.song, data, id);
       enqueueSnackbar("Canción añadida a la playlist con éxito", {
         variant: "success",
       });

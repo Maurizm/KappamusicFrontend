@@ -6,27 +6,16 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-<<<<<<< HEAD
-/*const firebaseConfig = {
+
+//DESCOMENTAR ESTO PARA PROBAR LOCAL (SI ESTA COMENTADO)
+const firebaseConfig = {
   apiKey: "AIzaSyC8Hqoj8nvbu9WCSdGzqQ3frOrcPlPixVI",
   authDomain: "kappamusic-ce6cf.firebaseapp.com",
   projectId: "kappamusic-ce6cf",
   storageBucket: "kappamusic-ce6cf.appspot.com",
   messagingSenderId: "473715430990",
   appId: "1:473715430990:web:76e3e3eed4a7797d3fd51f",
-};*/
-=======
-
-//DESCOMENTAR ESTO PARA PROBAR LOCAL (SI ESTA COMENTADO)
-const firebaseConfig = {
-  // apiKey: "AIzaSyC8Hqoj8nvbu9WCSdGzqQ3frOrcPlPixVI",
-  // authDomain: "kappamusic-ce6cf.firebaseapp.com",
-  // projectId: "kappamusic-ce6cf",
-  // storageBucket: "kappamusic-ce6cf.appspot.com",
-  // messagingSenderId: "473715430990",
-  // appId: "1:473715430990:web:76e3e3eed4a7797d3fd51f",
 };
->>>>>>> 3413f3778fee59ed71c891501fae5b8f69991995
 
 // Initialize Firebase
 // const appFirebase = initializeApp(firebaseConfig);
