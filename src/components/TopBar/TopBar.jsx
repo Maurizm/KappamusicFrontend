@@ -8,7 +8,7 @@ function TopBar() {
   return (
     <div style={styles.container}>
       <div style={{ display: "flex", width: "100%" }}>
-        <NavigationButtons />
+        {/* <NavigationButtons /> */}
         <SearchBar />
       </div>
 

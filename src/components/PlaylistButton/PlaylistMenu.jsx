@@ -156,7 +156,24 @@ export default function PlaylistMenu(props) {
             },
           }}
         >
-          {userData[0]["playlists"].map((playlist) => {
+          {userData[0]["playlists"].length == 0 ? (
+            <MenuItem disabled> Aún no tienes una playlist creada. </MenuItem>
+          ) : (
+            userData[0]["playlists"].map((playlist) => {
+              return (
+                <MenuItem
+                  key={playlist.id}
+                  onClick={() => handleAddToPlaylist(userData, playlist.id)}
+                >
+                  <ListItemIcon>
+                    <MdPlaylistPlay size={22} color={COLORS.accentColor} />
+                  </ListItemIcon>
+                  {playlist.name}
+                </MenuItem>
+              );
+            })
+          )}
+          {/* {userData[0]["playlists"].map((playlist) => {
             return (
               <MenuItem
                 key={playlist.id}
@@ -168,7 +185,7 @@ export default function PlaylistMenu(props) {
                 {playlist.name}
               </MenuItem>
             );
-          })}
+          })} */}
         </NestedMenuItem>
       </Menu>
     </>
