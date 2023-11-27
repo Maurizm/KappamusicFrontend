@@ -75,7 +75,6 @@ export default function ListSongMenu({ song, isInPlaylist, playlistId }) {
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{}}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}

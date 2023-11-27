@@ -1,5 +1,5 @@
 //import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import TopBar from "./components/TopBar/TopBar";
@@ -26,10 +26,15 @@ function App() {
   const { playlistSongs } = useContext(playerContext);
   const [user, loading, error] = useAuthState(auth);
   const [playerKey, setPlayerKey] = useState(0);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     setPlayerKey((i) => i + 1);
   }, [playlistSongs]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   if (loading) {
     return <LoadingComponent fullscreen={true} />;

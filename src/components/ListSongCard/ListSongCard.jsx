@@ -31,7 +31,15 @@ function ListSongCard({ song, onClick, isInPlaylist = false, playlistId }) {
         }}
         elevation={0}
       >
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            cursor: "pointer",
+          }}
+          onClick={onClick}
+        >
           <img src={song.coverLink} style={styles.image} onClick={onClick} />
           <div style={{ paddingLeft: 10 }}>
             <Typography color={COLORS.textColor}>{song.title}</Typography>
