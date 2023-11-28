@@ -6,6 +6,7 @@ import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
 import { Typography } from "@mui/material";
 import Background from "../../assets/Background.png";
+import { compare } from "./hooks/compare";
 
 function GenrePage() {
   const dict = {
@@ -32,9 +33,15 @@ function GenrePage() {
 
   useEffect(() => {
     setGenreSongs(
-      songsList.filter((song) => {
-        return song.gender == genreName || song.artist == genreName;
-      })
+      songsList
+        .filter((song) => {
+          return (
+            song.gender.toLowerCase() == genreName.toLocaleLowerCase() ||
+            song.artist.toLocaleLowerCase().trim() ==
+              genreName.toLocaleLowerCase().trim()
+          );
+        })
+        .sort(compare)
     );
   }, [songsList]);
 
