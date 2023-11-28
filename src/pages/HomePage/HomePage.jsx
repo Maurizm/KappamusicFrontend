@@ -10,7 +10,9 @@ import SideBar from "../../components/SideBar";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import LoadingComponent from "../../components/LoadingComponent";
 import HomePageGenreCard from "./HomePageGenreCard";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import Logo from "../../assets/Logo.png";
+import Background from "../../assets/Background.png";
 
 function HomePage() {
   const { songsList, setCurrentSong, setPlaylistSongs } =
@@ -97,20 +99,47 @@ function HomePage() {
     return <LoadingComponent />;
   }
   return (
-    <div>
-      <Typography noWrap overflow={"hidden"} variant="h2" marginBottom={3}>
-        Librería
-      </Typography>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-        }}
-      >
-        {genres.map((genre) => {
-          return <HomePageGenreCard genre={genre} key={genre.id} />;
-        })}
+    <div style={{ position: "relative" }}>
+      <div>
+        <img
+          src={Background}
+          style={{
+            maxWidth: "79%",
+            height: "auto",
+            opacity: 0.04,
+            position: "fixed",
+          }}
+        />
+      </div>
+      <div>
+        <Box
+          sx={{
+            maxWidth: "100%",
+            height: 350,
+            //backgroundColor: "red",
+            borderRadius: 30,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            overflow: "hidden",
+          }}
+        >
+          <img src={Logo} style={{ width: 300, height: 150 }} />
+        </Box>
+        <Typography noWrap overflow={"hidden"} variant="h2" marginBottom={3}>
+          Librería
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+          }}
+        >
+          {genres.map((genre) => {
+            return <HomePageGenreCard genre={genre} key={genre.id} />;
+          })}
+        </div>
       </div>
     </div>
   );

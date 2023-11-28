@@ -46,7 +46,7 @@ function App() {
           <SideBar />
           <div
             style={{
-              paddingLeft: 50,
+              paddingLeft: 30,
               width: "100%",
               paddingRight: 20,
               marginBottom: 200,

@@ -5,6 +5,7 @@ import LoadingComponent from "../../components/LoadingComponent";
 import { styles } from "./styles";
 import SongCard from "../../components/SongCard/SongCard";
 import { Typography } from "@mui/material";
+import Background from "../../assets/Background.png";
 
 function GenrePage() {
   const { songsList, setPlaylistSongs, setCurrentSong } =
@@ -32,17 +33,28 @@ function GenrePage() {
 
   return (
     <div>
-      <Typography noWrap overflow={"hidden"} variant="h2" marginBottom={2}>
-        {location.state.displayName}
-      </Typography>
-      <div style={styles.cardContainer}>
-        {genreSongs.map((song) => (
-          <SongCard
-            song={song}
-            onClick={() => onHandleClick(song)}
-            key={song.id}
-          />
-        ))}
+      <img
+        src={Background}
+        style={{
+          maxWidth: "79%",
+          height: "auto",
+          opacity: 0.03,
+          position: "fixed",
+        }}
+      />
+      <div>
+        <Typography noWrap overflow={"hidden"} variant="h2" marginBottom={2}>
+          {location.state.displayName}
+        </Typography>
+        <div style={styles.cardContainer}>
+          {genreSongs.map((song) => (
+            <SongCard
+              song={song}
+              onClick={() => onHandleClick(song)}
+              key={song.id}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
