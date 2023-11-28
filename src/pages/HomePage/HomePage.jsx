@@ -13,11 +13,35 @@ import HomePageGenreCard from "./HomePageGenreCard";
 import { Box, Typography } from "@mui/material";
 import Logo from "../../assets/Logo.png";
 import Background from "../../assets/Background.png";
+import HomePageArtistCard from "./HomePageArtistCard";
 
 function HomePage() {
   const { songsList, setCurrentSong, setPlaylistSongs } =
     useContext(playerContext);
 
+  const artists = [
+    {
+      id: 1,
+      name: "Daft Punk",
+      background:
+        "https://i.discogs.com/sP_wDoC5MsG9lZUfb9thLbpmMmL__nuVnGMNpwgjirE/rs:fit/g:sm/q:90/h:438/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTEyODkt/MTYxNTQ4NDUyOS00/Mjg0LmpwZWc.jpeg",
+      displayName: "Daft Punk",
+    },
+    {
+      id: 2,
+      name: "Bad Bunny",
+      background:
+        "https://i.discogs.com/682ZK_vDa4vkXg9nEMgy-XnvPViQNhRj0FLnYaiA10A/rs:fit/g:sm/q:90/h:400/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTU4OTQ5/MDUtMTY1MjA3MjIy/MS04NzUwLmpwZWc.jpeg",
+      displayName: "Bad Bunny",
+    },
+    {
+      id: 3,
+      name: "The Beatles",
+      background:
+        "https://i.discogs.com/YrZb0tNZaSP8pDrCOMa6ukA54CzlW-m4pL9ARW6R-zU/rs:fit/g:sm/q:90/h:374/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTgyNzMw/LTE2NTA4MTg4NTkt/OTkwMi5qcGVn.jpeg",
+      displayName: "The Beatles",
+    },
+  ];
   const genres = [
     {
       id: 1,
@@ -126,8 +150,25 @@ function HomePage() {
         >
           <img src={Logo} style={{ width: 300, height: 150 }} />
         </Box>
-        <Typography noWrap overflow={"hidden"} variant="h2" marginBottom={3}>
-          Librería
+        {/* ARTISTAS DESTACADOS */}
+        <Typography variant="h5" marginBottom={1} fontWeight={500}>
+          ARTISTAS DESTACADOS
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            justifyContent: "space-between",
+            marginBottom: 30,
+          }}
+        >
+          {artists.map((artist) => {
+            return <HomePageArtistCard artist={artist} key={artist.id} />;
+          })}
+        </div>
+        <Typography variant="h5" marginBottom={1} fontWeight={500}>
+          GÉNEROS MUSICALES
         </Typography>
         <div
           style={{

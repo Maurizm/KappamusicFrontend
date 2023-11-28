@@ -4,24 +4,24 @@ import { COLORS } from "../../colors/colors";
 import playerContext from "../../context/PlayerContext/PlayerContext";
 import { useNavigate } from "react-router-dom";
 
-function HomePageGenreCard({ genre }) {
+function HomePageArtistCard({ artist }) {
   const { userData, songsList } = useContext(playerContext);
-  const [genreSongs, setGenreSongs] = useState([]);
+  //const [artistsSongs, setArtistsSongs] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setGenreSongs(
-      songsList.filter((song) => {
-        return song.gender == genre.name;
-      })
-    );
-  }, []);
+  // useEffect(() => {
+  //   setArtistsSongs(
+  //     songsList.filter((song) => {
+  //       return song.artist == artist.name;
+  //     })
+  //   );
+  // }, []);
 
   return (
     <Box
       sx={{
-        width: 250,
-        height: 150,
+        maxWidth: "100%",
+        maxHeight: 250,
         margin: 1,
         //textAlign: "center",
         backgroundColor: COLORS.highlightBackgroundColor,
@@ -34,17 +34,18 @@ function HomePageGenreCard({ genre }) {
         cursor: "pointer",
       }}
       onClick={() =>
-        navigate(`/genre/${genre.name}`, {
-          state: { displayName: genre.displayName },
+        navigate(`/genre/${artist.name}`, {
+          state: { displayName: artist.displayName },
         })
       }
     >
       <img
-        src={genre.background}
+        src={artist.background}
         style={{
-          maxWidth: "120%",
-          maxHeight: "120%",
+          maxWidth: "100%",
+          //maxHeight: "120%",
           opacity: 0.5,
+          objectFit: "cover",
         }}
       />
       <Typography
@@ -52,12 +53,12 @@ function HomePageGenreCard({ genre }) {
           position: "absolute",
           textShadow: "2px 2px 4px #000000",
         }}
-        variant="h5"
+        variant="h4"
       >
-        {genre.displayName}
+        {artist.displayName}
       </Typography>
     </Box>
   );
 }
 
-export default HomePageGenreCard;
+export default HomePageArtistCard;
