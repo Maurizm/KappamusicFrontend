@@ -38,7 +38,7 @@ function GenrePage() {
     );
   }, [songsList]);
 
-  if (songsList.length == 0 || location.state.displayName == null) {
+  if (songsList.length == 0) {
     return <LoadingComponent />;
   }
 
