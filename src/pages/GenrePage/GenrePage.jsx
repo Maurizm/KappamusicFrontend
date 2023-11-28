@@ -8,6 +8,17 @@ import { Typography } from "@mui/material";
 import Background from "../../assets/Background.png";
 
 function GenrePage() {
+  const dict = {
+    Rock: "Rock",
+    Regueton: "Reguetón",
+    Pop: "Pop",
+    House: "House",
+    Esrock: "Rock en Español",
+    cumbia: "Cumbia",
+    eurobeat: "Eurobeat",
+    salsa: "Salsa",
+    kpop: "K-Pop",
+  };
   const { songsList, setPlaylistSongs, setCurrentSong } =
     useContext(playerContext);
   const [genreSongs, setGenreSongs] = useState([]);
@@ -44,7 +55,7 @@ function GenrePage() {
       />
       <div>
         <Typography noWrap overflow={"hidden"} variant="h2" marginBottom={2}>
-          {location.state.displayName}
+          {dict[genreName] ? dict[genreName] : genreName}
         </Typography>
         <div style={styles.cardContainer}>
           {genreSongs.map((song) => (
