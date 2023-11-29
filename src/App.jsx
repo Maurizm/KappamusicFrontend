@@ -53,7 +53,7 @@ function App() {
             }}
           >
             <TopBar />
-            <div style={{ marginTop: 15 }}>
+            <div style={{ marginTop: 50 }}>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/search/:searchTerm" element={<SearchPage />} />
