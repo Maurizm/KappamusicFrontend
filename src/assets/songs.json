@@ -3,35 +3,72 @@
     "title": "Harder, Better, Faster, Stronger",
     "id": 1,
     "artist": "Daft Punk",
+    "album": "Discovery",
     "link": "https://cdns-preview-d.dzcdn.net/stream/c-deda7fa9316d9e9e880d2c6207e92260-10.mp3",
-    "cover": "https://e-cdns-images.dzcdn.net/images/cover/2e018122cb56986277102d2041a592c8/500x500-000000-80-0-0.jpg"
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/2e018122cb56986277102d2041a592c8/500x500-000000-80-0-0.jpg",
+    "isFavorite": true
   },
   {
     "title": "Blank Space",
     "id": 2,
     "artist": "Taylor Swift",
+    "album": "1989",
     "link": "https://cdns-preview-6.dzcdn.net/stream/c-6e5160a0eb0a1e062f294a21148fd2fc-8.mp3",
-    "cover": "https://e-cdns-images.dzcdn.net/images/cover/68b4e986958b17f05b062ffa8d7ae114/500x500-000000-80-0-0.jpg"
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/68b4e986958b17f05b062ffa8d7ae114/500x500-000000-80-0-0.jpg",
+    "isFavorite": true
   },
   {
     "title": "Bohemian Rhapsody",
     "id": 3,
     "artist": "Queen",
+    "album": "A Night at the Opera",
     "link": "https://cdns-preview-1.dzcdn.net/stream/c-17597947a0fdd6e8ea971f146755cd34-13.mp3",
-    "cover": "https://e-cdns-images.dzcdn.net/images/cover/6706f1154083f461a348508c28030a30/500x500-000000-80-0-0.jpg"
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/6706f1154083f461a348508c28030a30/500x500-000000-80-0-0.jpg",
+    "isFavorite": true
   },
   {
     "title": "Circles",
     "id": 4,
     "artist": "Post Malone",
+    "album": "Hollywood's Bleeding",
     "link": "https://cdns-preview-d.dzcdn.net/stream/c-df36f056f3f9770ab7b7b466e32975fd-7.mp3",
-    "cover": "https://e-cdns-images.dzcdn.net/images/cover/4642b8e3e0a89f92a6e2bfed13d8f31c/500x500-000000-80-0-0.jpg"
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/4642b8e3e0a89f92a6e2bfed13d8f31c/500x500-000000-80-0-0.jpg",
+    "isFavorite": false
   },
   {
     "title": "Taylor",
     "id": 5,
     "artist": "Wiz Khalifa",
+    "album": "Fly Times Vol. 1: The Good Fly Young",
     "link": "https://cdns-preview-a.dzcdn.net/stream/c-a560ab7e512ebbc7e327b4757744d36f-5.mp3",
-    "cover": "https://e-cdns-images.dzcdn.net/images/cover/9329c405cf74ce88a5cd62f3d9ef6423/500x500-000000-80-0-0.jpg"
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/9329c405cf74ce88a5cd62f3d9ef6423/500x500-000000-80-0-0.jpg",
+    "isFavorite": false
+  },
+  {
+    "title": "We Will Rock You",
+    "id": 6,
+    "artist": "Queen",
+    "album": "News of the World",
+    "link": "https://cdns-preview-e.dzcdn.net/stream/c-e19a6ac869b36b45697aa109b6ef0319-17.mp3",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/c43a1011106beda256e5371be1b00271/500x500-000000-80-0-0.jpg",
+    "isFavorite": false
+  },
+  {
+    "title": "Hey Jude",
+    "id": 7,
+    "artist": "The Beatles",
+    "album": "The Beatles 1967 - 1970",
+    "link": "https://cdns-preview-0.dzcdn.net/stream/c-01641e09dc1e287487f5568aed2d0251-11.mp3",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/32b6b5174e633cd6d182d00024dddcb5/500x500-000000-80-0-0.jpg",
+    "isFavorite": false
+  },
+  {
+    "title": "Chop Suey!",
+    "id": 8,
+    "artist": "System of a Down",
+    "album": "Toxicity",
+    "link": "https://cdns-preview-7.dzcdn.net/stream/c-77b9d26d347e2fdb77804409a5e33b08-6.mp3",
+    "cover": "https://e-cdns-images.dzcdn.net/images/cover/1d2f10d7d6bfb816148e8dda5c32f841/500x500-000000-80-0-0.jpg",
+    "isFavorite": false
   }
 ]
